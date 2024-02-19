@@ -58,7 +58,9 @@ Now with a sense of how a Merkle Tree can be implemented, here is an example of 
 
 In this example, explore how a Merkle Proof can be used for whitelisting three email addresses.
 
-- As in the implementation, the first step would be to generate a Merkle root from a list of email addresses
+### Step 1
+
+As in the implementation, the first step would be to generate a Merkle root from a list of email addresses
 
 ```javascript
 function generateMerkleRoot(emails) {
@@ -68,8 +70,9 @@ function generateMerkleRoot(emails) {
 
 Since we want to create hashes, we will use the `crypto` module in Node.js. With that module, the `generateMerkleRoot` will take an array of email addresses as input and hash each email address using SHA-256. The resulting hash is stored in an array named `leaves`. 
 
+### Step 2
 
-- Next, the Merkle root needs to be calculated from the list of leaves
+Next, the Merkle root needs to be calculated from the list of leaves
 
 ```javascript
 function merkleRoot(leaves) {
@@ -87,7 +90,9 @@ function merkleRoot(leaves) {
 The hash in `leaves` is then pushed into the `merkleRoot` function with the array of hashed email addresses to calculate the Merkle root.
 
 
-- Then finally, the Merkle proof for a given email address can be generated 
+### Step 3
+
+Then finally, the Merkle proof for a given email address can be generated 
 
 ```javascript
 function generateMerkleProof(email, emails) {
