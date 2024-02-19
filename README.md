@@ -58,7 +58,9 @@ function generateMerkleRoot(emails) {
     return merkleRoot(leaves);
 ```
 
-Next the Merkle root needs to be calculated from the list of leaves
+Since we want to create hashes, we will use the `crypto` module in Node.js. With that module, the `generateMerkleRoot` will take an array of email addresses as input and hash each email address using SHA-256. The resulting hash is stored in an array named `leaves`. 
+
+Next, the Merkle root needs to be calculated from the list of leaves
 ```javascript
 function merkleRoot(leaves) {
     if (leaves.length === 0) {
@@ -71,6 +73,8 @@ function merkleRoot(leaves) {
     }
 }
 ```
+
+The hash in `leaves` is then pushed into the `merkleRoot` function with the array of hashed email addresses to calculate the Merkle root.
 
 Then finally, the Merkle proof for a given email address can be generated 
 ```javascript
@@ -97,6 +101,9 @@ function generateMerkleProof(email, emails) {
     return { leaf, proof };
 }
 ```
+The `generateMerkleProof` calculates the hash of the email address to find its corresponding leaf in the Merkle tree and iterates through the Merkle tree to find the siblings of each node on the path from the leaf to the root. These siblings form the Merkle Proof.
+
+If the email address is found in the list of email addresses, it prints the proof. If the email address is not found, it indicates that the email address is not whitelisted.
 
 ## Conclusion
 In conclusion, Merkle Trees play a fundamental role in ensuring integrity and efficiency. By organizing transactions into a hierarchical structure and hashing them together, Merkle Trees enable quick verification of large sets of data with minimal computational resources. Their use in blockchain allows for secure and efficient validation of transactions, enhances the immutability of data, and facilitates faster synchronization among network participants. Overall, Merkle Trees are a cornerstone in maintaining the trust and reliability of blockchain systems, contributing significantly to their widespread adoption and functionality in various industries.
